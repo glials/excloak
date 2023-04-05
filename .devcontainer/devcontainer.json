@@ -1,0 +1,14 @@
+{
+  "name": "Glials - Excloak",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "excloak",
+  "workspaceFolder": "/excloak",
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "task.allowAutomaticTasks": "on"
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+
+  excloak:
+    build: .
+    environment:
+      - KEYCLOAK_URL=http://keycloak:8080/auth
+    depends_on:
+      - keycloak
+
+  keycloak:
+    image: quay.io/phasetwo/phasetwo-keycloak:latest
+    command: |
+      start-dev
+      --spi-email-template-provider=freemarker-plus-mustache \
+      --spi-email-template-freemarker-plus-mustache-enabled=true
+    ports:
+      - 8080:8080
+      - 8443:8443
+    env_file:
+      - .env
+    depends_on:
+      - database
+    volumes:
+      - ./keycloak-data:/opt/jboss/keycloak/standalone/data
+
+  database:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5999:5432"
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data/postgresql:/docker-entrypoint-initdb.d
+
+volumes:
+   pgdata:

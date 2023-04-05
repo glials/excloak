@@ -1,0 +1,21 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // See https://code.visualstudio.com/docs/editor/tasks-appendix
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "Elixir",
+          "type": "shell",
+          "command": "mix run --no-halt",
+          "isBackground": true,
+          "presentation": {
+              "group": "phoenix",
+              "reveal": "always",
+              "panel": "new",
+          },
+          "runOptions": {
+              "runOn": "folderOpen"
+          }
+      }
+  ]
+}
