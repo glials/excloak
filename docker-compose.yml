@@ -8,6 +8,8 @@ services:
       - KEYCLOAK_URL=http://keycloak:8080/auth
     depends_on:
       - keycloak
+    volumes:
+      - .:/excloak
 
   keycloak:
     image: quay.io/phasetwo/phasetwo-keycloak:latest
