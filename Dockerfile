@@ -1,8 +1,19 @@
-FROM elixir:1.13.3-alpine
+FROM elixir:1.13.3
 
-RUN apk update && \
-    apk add --no-cache bash build-base && \
-    mix local.hex --force && \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y build-essential bash
+
+# Add a dev user with sudo privileges and set bash as the default shell
+RUN adduser --disabled-password --gecos '' dev && \
+    adduser dev sudo && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER dev
+ENV HOME /home/dev
+
+# Install Elixir dependencies
+RUN mix local.hex --force && \
     mix local.rebar --force
 
 WORKDIR /excloak
