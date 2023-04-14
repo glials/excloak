@@ -4,6 +4,7 @@ services:
 
   excloak:
     build: .
+    hostname: excloak
     environment:
       - KEYCLOAK_URL=http://keycloak:8080/auth
     depends_on:
