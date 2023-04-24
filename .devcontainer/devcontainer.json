@@ -6,6 +6,11 @@
 
   "customizations": {
     "vscode": {
+      "extensions": [
+        "jakebecker.elixir-ls",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker"
+      ],
       "settings": {
         "task.allowAutomaticTasks": "on"
       }
